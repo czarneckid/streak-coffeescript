@@ -26,3 +26,20 @@ describe 'Streak', ->
               Streak.statistics 'david', (statistics) ->
                 statistics.should.eql([0, 8, 5, 1, 3, 2, 11])
                 done()
+
+  describe '#resetStatistics', ->
+    it 'should reset all statistics', (done) ->
+      Streak.aggregate 'david', 3, (replies) ->
+        Streak.aggregate 'david', -2, (replies) ->
+          Streak.aggregate 'david', 5, (replies) ->
+            Streak.aggregate 'david', -1, (replies) ->
+              Streak.statistics 'david', (statistics) ->
+                statistics.should.eql([0, 8, 5, 1, 3, 2, 11])
+
+      Streak.resetStatistics 'david', (statistics) ->
+        statistics.should.eql(['OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK'])
+
+      Streak.statistics 'david', (statistics) ->
+        statistics.should.eql([0, 0, 0, 0, 0, 0, 0])
+
+      done()

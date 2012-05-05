@@ -59,11 +59,10 @@ Streak =
 
     transaction = @redis.multi()
     for key in keys
-      transaction.set("#{Streak.namespace}::#{key}::#{id}", 0)
+      transaction.set "#{Streak.namespace}::#{key}::#{id}", 0
     
     transaction.exec (err, replies) ->
       if err
-        console.log 'Unable to call resetStatistics'
         callback(err)
       else
         callback(replies)
