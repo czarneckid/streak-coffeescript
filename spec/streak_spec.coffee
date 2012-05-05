@@ -24,5 +24,5 @@ describe 'Streak', ->
           Streak.aggregate 'david', 5, (replies) ->
             Streak.aggregate 'david', -1, (replies) ->
               Streak.statistics 'david', (statistics) ->
-                console.log statistics
+                statistics.should.eql([0, 8, 5, 1, 3, 2, 11])
                 done()
