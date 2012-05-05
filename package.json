@@ -1,0 +1,27 @@
+{
+  "author": "David Czarnecki <me@davidczarnecki.com>",
+  "name": "streak",
+  "description": "streak is a library for calculating win/loss streaks. It uses Redis as its backend for collecting the data.",
+  "version": "0.0.1",
+  "homepage": "http://github.com/czarneckid/coffeescript-streak",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/czarneckid/coffeescript-streak.git"
+  },
+  "main": "./lib/index",
+  "scripts": {
+    "test": "make test"
+  },
+  "engines": {
+    "node": "~0.6.6"
+  },
+  "dependencies": {
+    "redis": "~0.7.0",
+    "coffee-script": ">= 1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "0.12.1",
+    "should": "0.5.1",
+    "redis-protocol": "0.1.9"
+  }
+}
