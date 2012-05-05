@@ -5,9 +5,13 @@ This is a CoffeeScript port of the original [streak](https://github.com/czarneck
 
 ## Installation
 
+[Placeholder for npm installation instructions]
+
 ## Usage
 
 streak is configurable with respect to its keys to allow for tracking other positive/negative things in a game like wins and losses, kills and deaths, etc.
+
+[Placeholder for usage details]
 
 ## Contributing
 
