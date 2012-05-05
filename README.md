@@ -36,16 +36,16 @@ Streak.configure(function() {
   this.total_key = 'total';
 });
 
-Streak.aggregate('david', 3, function(replies_callback) {  
+Streak.aggregate('david', 3, function(aggregate_callback) {  
 });
 
-Streak.aggregate('david', -2, function(replies_callback) {  
+Streak.aggregate('david', -2, function(aggregate_callback) {  
 });
 
-Streak.aggregate('david', 5, function(replies_callback) {  
+Streak.aggregate('david', 5, function(aggregate_callback) {  
 });
 
-Streak.aggregate('david', -1, function(replies_callback) {  
+Streak.aggregate('david', -1, function(aggregate_callback) {  
 });
 
 Streak.statistics('david', function(statistics_callback) {
@@ -60,7 +60,7 @@ Streak.statistics('david', function(statistics_callback) {
 #   losses_streak: 2,
 #  total: 11 } 
 
-Streak.resetStatistics('david', function(callback) {
+Streak.resetStatistics('david', function(reset_callback) {
   
 });
 
