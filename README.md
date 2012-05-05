@@ -5,7 +5,11 @@ This is a CoffeeScript port of the original [streak](https://github.com/czarneck
 
 ## Installation
 
-[Placeholder for npm installation instructions]
+```
+npm install streak
+```
+
+You can find [streak at the npm registry](http://search.npmjs.org/#/streak).
 
 ## Usage
 
