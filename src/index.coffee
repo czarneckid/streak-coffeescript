@@ -52,7 +52,15 @@ Streak =
     transaction.get "#{Streak.namespace}::#{Streak.negative_streak_key}::#{id}"
     transaction.get "#{Streak.namespace}::#{Streak.total_key}::#{id}"
     transaction.exec (err, replies) ->
-      callback(replies.map (reply) -> parseInt(reply || 0))
+      reply_hash = {}
+      reply_hash["#{Streak.positive_key}"] = parseInt(replies[0] || 0)
+      reply_hash["#{Streak.positive_total_key}"] = parseInt(replies[1] || 0)
+      reply_hash["#{Streak.positive_streak_key}"] = parseInt(replies[2] || 0)
+      reply_hash["#{Streak.negative_key}"] = parseInt(replies[3] || 0)
+      reply_hash["#{Streak.negative_total_key}"] = parseInt(replies[4] || 0)
+      reply_hash["#{Streak.negative_streak_key}"] = parseInt(replies[5] || 0)
+      reply_hash["#{Streak.total_key}"] = parseInt(replies[6] || 0)
+      callback(reply_hash)
 
   resetStatistics: (id, callback) ->
     keys = [Streak.positive_key, Streak.positive_total_key, Streak.positive_streak_key, Streak.negative_key, Streak.negative_total_key, Streak.negative_streak_key, Streak.total_key]

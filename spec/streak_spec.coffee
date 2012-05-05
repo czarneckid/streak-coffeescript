@@ -24,7 +24,14 @@ describe 'Streak', ->
           Streak.aggregate 'david', 5, (replies) ->
             Streak.aggregate 'david', -1, (replies) ->
               Streak.statistics 'david', (statistics) ->
-                statistics.should.eql([0, 8, 5, 1, 3, 2, 11])
+                statistics.should.eql({
+                  wins: 0,
+                  wins_total: 8,
+                  wins_streak: 5,
+                  losses: 1,
+                  losses_total: 3,
+                  losses_streak: 2,
+                  total: 11 })
                 done()
 
   describe '#resetStatistics', ->
@@ -34,12 +41,26 @@ describe 'Streak', ->
           Streak.aggregate 'david', 5, (replies) ->
             Streak.aggregate 'david', -1, (replies) ->
               Streak.statistics 'david', (statistics) ->
-                statistics.should.eql([0, 8, 5, 1, 3, 2, 11])
+                statistics.should.eql({
+                  wins: 0,
+                  wins_total: 8,
+                  wins_streak: 5,
+                  losses: 1,
+                  losses_total: 3,
+                  losses_streak: 2,
+                  total: 11 })
 
       Streak.resetStatistics 'david', (statistics) ->
         statistics.should.eql(['OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK'])
 
       Streak.statistics 'david', (statistics) ->
-        statistics.should.eql([0, 0, 0, 0, 0, 0, 0])
+        statistics.should.eql({
+          wins: 0,
+          wins_total: 0,
+          wins_streak: 0,
+          losses: 0,
+          losses_total: 0,
+          losses_streak: 0,
+          total: 0 })
 
       done()
