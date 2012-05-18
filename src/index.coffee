@@ -17,40 +17,40 @@ Streak =
 
     if count >= 0
       transaction = @redis.multi()
-      transaction.get "#{Streak.namespace}::#{Streak.positive_key}::#{id}"
-      transaction.get "#{Streak.namespace}::#{Streak.positive_streak_key}::#{id}"
+      transaction.get "#{Streak.namespace}:#{Streak.positive_key}:#{id}"
+      transaction.get "#{Streak.namespace}:#{Streak.positive_streak_key}:#{id}"
       transaction.exec (err, replies) ->
         inner_transaction = self.redis.multi()
-        inner_transaction.set "#{Streak.namespace}::#{Streak.positive_streak_key}::#{id}", Math.max parseInt(replies[0] || 0) + count, parseInt(replies[1] || 0)
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.positive_key}::#{id}", Math.abs count
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.positive_total_key}::#{id}", Math.abs count
-        inner_transaction.set "#{Streak.namespace}::#{Streak.negative_key}::#{id}", 0
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.total_key}::#{id}", Math.abs count
+        inner_transaction.set "#{Streak.namespace}:#{Streak.positive_streak_key}:#{id}", Math.max parseInt(replies[0] || 0) + count, parseInt(replies[1] || 0)
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.positive_key}:#{id}", Math.abs count
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.positive_total_key}:#{id}", Math.abs count
+        inner_transaction.set "#{Streak.namespace}:#{Streak.negative_key}:#{id}", 0
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.total_key}:#{id}", Math.abs count
         inner_transaction.exec (err, replies) ->
           callback(replies)
     else
       transaction = @redis.multi()
-      transaction.get "#{Streak.namespace}::#{Streak.negative_key}::#{id}"
-      transaction.get "#{Streak.namespace}::#{Streak.negative_streak_key}::#{id}"
+      transaction.get "#{Streak.namespace}:#{Streak.negative_key}:#{id}"
+      transaction.get "#{Streak.namespace}:#{Streak.negative_streak_key}:#{id}"
       transaction.exec (err, replies) ->
         inner_transaction = self.redis.multi()
-        inner_transaction.set "#{Streak.namespace}::#{Streak.negative_streak_key}::#{id}", Math.abs Math.max parseInt(replies[0] || 0) - count, parseInt(replies[1] || 0)
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.negative_key}::#{id}", Math.abs count
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.negative_total_key}::#{id}", Math.abs count
-        inner_transaction.set "#{Streak.namespace}::#{Streak.positive_key}::#{id}", 0
-        inner_transaction.incrby "#{Streak.namespace}::#{Streak.total_key}::#{id}", Math.abs count
+        inner_transaction.set "#{Streak.namespace}:#{Streak.negative_streak_key}:#{id}", Math.abs Math.max parseInt(replies[0] || 0) - count, parseInt(replies[1] || 0)
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.negative_key}:#{id}", Math.abs count
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.negative_total_key}:#{id}", Math.abs count
+        inner_transaction.set "#{Streak.namespace}:#{Streak.positive_key}:#{id}", 0
+        inner_transaction.incrby "#{Streak.namespace}:#{Streak.total_key}:#{id}", Math.abs count
         inner_transaction.exec (err, replies) ->
           callback(replies)
 
   statistics: (id, callback) ->
     transaction = @redis.multi()
-    transaction.get "#{Streak.namespace}::#{Streak.positive_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.positive_total_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.positive_streak_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.negative_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.negative_total_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.negative_streak_key}::#{id}"
-    transaction.get "#{Streak.namespace}::#{Streak.total_key}::#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.positive_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.positive_total_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.positive_streak_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.negative_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.negative_total_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.negative_streak_key}:#{id}"
+    transaction.get "#{Streak.namespace}:#{Streak.total_key}:#{id}"
     transaction.exec (err, replies) ->
       reply_hash = {}
       reply_hash["#{Streak.positive_key}"] = parseInt(replies[0] || 0)
@@ -67,7 +67,7 @@ Streak =
 
     transaction = @redis.multi()
     for key in keys
-      transaction.set "#{Streak.namespace}::#{key}::#{id}", 0
+      transaction.set "#{Streak.namespace}:#{key}:#{id}", 0
     
     transaction.exec (err, replies) ->
       if err
