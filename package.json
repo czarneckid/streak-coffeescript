@@ -3,10 +3,10 @@
   "name": "streak",
   "description": "streak is a library for calculating win/loss streaks. It uses Redis as its backend for collecting the data.",
   "version": "0.1.0",
-  "homepage": "http://github.com/czarneckid/coffeescript-streak",
+  "homepage": "http://github.com/czarneckid/streak-coffescript",
   "repository": {
     "type": "git",
-    "url": "git://github.com/czarneckid/coffeescript-streak.git"
+    "url": "git://github.com/czarneckid/streak-coffeescript.git"
   },
   "main": "./lib/index",
   "scripts": {
