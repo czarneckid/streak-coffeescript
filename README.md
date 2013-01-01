@@ -92,4 +92,4 @@ Streak.statistics('david', function(statistics_callback) {
 
 ## Copyright
 
-Copyright (c) 2012 David Czarnecki. See LICENSE for further details.
+Copyright (c) 2012-2013 David Czarnecki. See LICENSE for further details.
