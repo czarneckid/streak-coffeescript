@@ -1,6 +1,6 @@
 # streak
 
-streak is a library for calculating win/loss streaks. It uses Redis as its backend for collecting the data. 
+streak is a library for calculating win/loss streaks. It uses Redis as its backend for collecting the data.
 This is a CoffeeScript port of the original [streak](https://github.com/czarneckid/streak) Ruby gem.
 
 ## Installation
@@ -40,20 +40,20 @@ Streak.configure(function() {
   this.total_key = 'total';
 });
 
-Streak.aggregate('david', 3, function(aggregate_callback) {  
+Streak.aggregate('david', 3, function(aggregate_callback) {
 });
 
-Streak.aggregate('david', -2, function(aggregate_callback) {  
+Streak.aggregate('david', -2, function(aggregate_callback) {
 });
 
-Streak.aggregate('david', 5, function(aggregate_callback) {  
+Streak.aggregate('david', 5, function(aggregate_callback) {
 });
 
-Streak.aggregate('david', -1, function(aggregate_callback) {  
+Streak.aggregate('david', -1, function(aggregate_callback) {
 });
 
 Streak.statistics('david', function(statistics_callback) {
-  
+
 });
 
 # { wins: 0,
@@ -62,14 +62,14 @@ Streak.statistics('david', function(statistics_callback) {
 #   losses: 1,
 #   losses_total: 3,
 #   losses_streak: 2,
-#  total: 11 } 
+#  total: 11 }
 
 Streak.resetStatistics('david', function(reset_callback) {
-  
+
 });
 
 Streak.statistics('david', function(statistics_callback) {
-  
+
 });
 
 # { wins: 0,
@@ -78,7 +78,7 @@ Streak.statistics('david', function(statistics_callback) {
 #   losses: 0,
 #   losses_total: 0,
 #   losses_streak: 0,
-#  total: 0 } 
+#  total: 0 }
 
 ```
 
@@ -92,4 +92,4 @@ Streak.statistics('david', function(statistics_callback) {
 
 ## Copyright
 
-Copyright (c) 2012-2013 David Czarnecki. See LICENSE for further details.
+Copyright (c) 2012-2014 David Czarnecki. See LICENSE for further details.
